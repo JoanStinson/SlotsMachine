@@ -10,6 +10,7 @@ public class RollerManager : MonoBehaviour
     private Roller[] _rollers;
     private float _startingRollerXPosition = -477f;
     private float _spacingBetweenRollers = 238.5f;
+    private float _delayInSecondsBetweenRollers = 0.25f;
 
     private void Start()
     {
@@ -34,6 +35,11 @@ public class RollerManager : MonoBehaviour
         for (int i = 0; i < _rollers.Length; ++i)
         {
             _rollers[i].StartSpin();
+            yield return new WaitForSeconds(_delayInSecondsBetweenRollers);
+        }
+        for (int i = 0; i < _rollers.Length; ++i)
+        {
+            _rollers[i].StartStopSpinCountdown();
             yield return new WaitWhile(() => _rollers[i].IsSpinning);
         }
         _stoppedSpinEvent.Trigger();

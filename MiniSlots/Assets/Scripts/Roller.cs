@@ -65,6 +65,10 @@ public class Roller : MonoBehaviour
     public void StartSpin()
     {
         _isSpinning = true;
+    }
+
+    public void StartStopSpinCountdown()
+    {
         _currentSpinTmeSeconds = Random.Range(_minSpinTimeSeconds, _maxSpinTimeSeconds);
         StartCoroutine(StopSpinAfterDelay(_currentSpinTmeSeconds));
     }
