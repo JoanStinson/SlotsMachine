@@ -5,6 +5,8 @@ public class RollerManager : MonoBehaviour
 {
     [SerializeField] private GameObject _rollerPrefab;
     [SerializeField] private GameEvent _stoppedSpinEvent;
+    [SerializeField] private SpriteLoader _spriteLoader;
+    [SerializeField] private RollerItemSequence[] _rollerItemSequences;
 
     private const int _numberOfRollers = 5;
     private Roller[] _rollers;
@@ -21,6 +23,7 @@ public class RollerManager : MonoBehaviour
             var localPosition = Vector3.right * (_startingRollerXPosition + (i * _spacingBetweenRollers));
             rollerGO.transform.localPosition = localPosition;
             var roller = rollerGO.GetComponent<Roller>();
+            roller.Initialize(Vector3.zero, _rollerItemSequences[i], _spriteLoader);
             _rollers[i] = roller;
         }
     }

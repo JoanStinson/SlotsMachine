@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Roller : MonoBehaviour
 {
-    [SerializeField]
     private int _rollerItemCount;
 
     [SerializeField]
@@ -22,6 +21,8 @@ public class Roller : MonoBehaviour
     private const float _minSpinTimeSeconds = 2f;
     private const float _maxSpinTimeSeconds = 4f;
     private float _currentSpinTmeSeconds;
+    private RollerItemSequence _rollerItemSequence;
+    private SpriteLoader _spriteLoader;
 
     public bool IsSpinning
     {
@@ -29,9 +30,12 @@ public class Roller : MonoBehaviour
         private set { _isSpinning = value; }
     }
 
-    public void Initialize(Vector3 firstItemLocalPosition)
+    public void Initialize(Vector3 firstItemLocalPosition, RollerItemSequence rollerItemSequence, SpriteLoader spriteLoader)
     {
         _firstItemDefaultLocalPosition = firstItemLocalPosition;
+        _rollerItemSequence = rollerItemSequence;
+        _spriteLoader = spriteLoader;
+        _rollerItemCount = rollerItemSequence.RollerItemTypes.Length;
     }
 
     private void Start()
@@ -43,8 +47,8 @@ public class Roller : MonoBehaviour
             var itemGO = Instantiate(_itemPrefab, transform);
             var localPosition = _firstItemDefaultLocalPosition + (i * GetSpacingBetweenItemsVector());
             itemGO.transform.localPosition = localPosition;
-            var item = itemGO.AddComponent<RollerItem>();
-            item.Initialize(this, _moveSpeed, _bottomLimit);
+            var item = itemGO.GetComponent<RollerItem>();
+            item.Initialize(this, _spriteLoader.GetSpriteForRollerItemType(_rollerItemSequence.RollerItemTypes[i]), _moveSpeed, _bottomLimit);
             _items.Add(item);
         }
     }

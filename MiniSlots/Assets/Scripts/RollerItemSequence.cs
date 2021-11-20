@@ -5,4 +5,5 @@ public class RollerItemSequence : ScriptableObject
 {
     [SerializeField]
     private RollerItemType[] _rollerItemTypes;
+    public RollerItemType[] RollerItemTypes => _rollerItemTypes;
 }

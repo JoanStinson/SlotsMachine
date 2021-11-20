@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7389155473928259643}
   - component: {fileID: 7389155473928259644}
   m_Layer: 5
-  m_Name: Image
+  m_Name: ItemImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -84,8 +84,9 @@ GameObject:
   m_Component:
   - component: {fileID: 7389155474469442898}
   - component: {fileID: 7389155474469442896}
+  - component: {fileID: 1578457538340401119}
   m_Layer: 5
-  m_Name: Figure
+  m_Name: RollerItem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -109,7 +110,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -479, y: -146}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 224, y: 212}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7389155474469442896
@@ -120,6 +121,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7389155474469442899}
   m_CullTransparentMesh: 0
+--- !u!114 &1578457538340401119
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7389155474469442899}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bca34a343a360bf4881363f05feea7b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _itemImage: {fileID: 7389155473928259644}
+  _markImage: {fileID: 7389155475595589474}
 --- !u!1 &7389155475595589476
 GameObject:
   m_ObjectHideFlags: 0
@@ -132,7 +147,7 @@ GameObject:
   - component: {fileID: 7389155475595589473}
   - component: {fileID: 7389155475595589474}
   m_Layer: 5
-  m_Name: Mark
+  m_Name: MarkImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

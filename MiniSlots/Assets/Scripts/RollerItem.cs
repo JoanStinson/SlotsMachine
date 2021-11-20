@@ -1,16 +1,23 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 public class RollerItem : MonoBehaviour
 {
+    [SerializeField] private Image _itemImage;
+    [SerializeField] private Image _markImage;
+
     private Roller _roller;
     private float _moveSpeed;
     private float _bottomLimit;
 
-    public void Initialize(Roller roller, float moveSpeed, float bottomLimit)
+    public void Initialize(Roller roller, Sprite sprite, float moveSpeed, float bottomLimit)
     {
         _roller = roller;
+        _itemImage.sprite = sprite;
         _moveSpeed = moveSpeed;
         _bottomLimit = bottomLimit;
+        _itemImage.gameObject.SetActive(true);
+        _markImage.gameObject.SetActive(false);
     }
 
     public void Spin()
@@ -21,5 +28,10 @@ public class RollerItem : MonoBehaviour
             transform.localPosition = _roller.GetLastItemLocalPosition() + _roller.GetSpacingBetweenItemsVector();
             _roller.MoveFirstItemToTheBack();
         }
+    }
+
+    public void SetMarkImageActive(bool active)
+    {
+        _markImage.gameObject.SetActive(active);
     }
 }
