@@ -13,16 +13,18 @@ public class Roller : MonoBehaviour
 
     private List<RollerItem> _items;
     public float _spacingBetweenItems = 212f;
-    private float _moveSpeed = 1000f;
+    private float _moveSpeed = 2000f;
     public float _bottomLimit = -355f;
     private bool _isSpinning = false;
     private Vector3 _firstItemDefaultLocalPosition;
 
-    private const float _minSpinTimeSeconds = 0f;//2
-    private const float _maxSpinTimeSeconds = 0.5f;//4
+    private const float _minSpinTimeSeconds = 2f;
+    private const float _maxSpinTimeSeconds = 4f;
     private float _currentSpinTmeSeconds;
     private RollerItemSequence _rollerItemSequence;
     private SpriteLoader _spriteLoader;
+    private bool _shouldMoveItemsToAppearOnScreen = false;
+
 
     public bool IsSpinning
     {
@@ -58,6 +60,19 @@ public class Roller : MonoBehaviour
     {
         if (!_isSpinning)
         {
+            if (_shouldMoveItemsToAppearOnScreen)
+            {
+                Vector3 localPosition = Vector3.zero;
+                for (int i = 0; i < _items.Count; ++i)
+                {
+                    localPosition = _firstItemDefaultLocalPosition + (i * GetSpacingBetweenItemsVector());
+                    _items[i].transform.localPosition = Vector3.Lerp(_items[i].transform.localPosition, localPosition, Time.deltaTime * 4f);
+                }
+                if (_items[_items.Count - 1] && Mathf.Abs(_items[_items.Count - 1].transform.localPosition.y - localPosition.y) < 0.01f)
+                {
+                    _shouldMoveItemsToAppearOnScreen = false;
+                }
+            }
             return;
         }
 
@@ -87,11 +102,7 @@ public class Roller : MonoBehaviour
     public void StopSpin()
     {
         _isSpinning = false;
-        for (int i = 0; i < _items.Count; ++i)
-        {
-            var localPosition = _firstItemDefaultLocalPosition + (i * GetSpacingBetweenItemsVector());
-            _items[i].transform.localPosition = Vector3.Lerp(_items[i].transform.localPosition, localPosition, 2f);
-        }
+        _shouldMoveItemsToAppearOnScreen = true;
     }
 
     public void MoveFirstItemToTheBack()
