@@ -6,6 +6,11 @@ public class RollerManager : MonoBehaviour
 {
     [SerializeField] private GameObject _rollerPrefab;
     [SerializeField] private GameEvent _stoppedSpinEvent;
+    [SerializeField] private GameEvent _firstLinePopupEvent;
+    [SerializeField] private GameEvent _secondLinePopupEvent;
+    [SerializeField] private GameEvent _thirdLinePopupEvent;
+    [SerializeField] private GameEvent _fourthLinePopupEvent;
+    [SerializeField] private GameEvent _fifthLinePopupEvent;
     [SerializeField] private SpriteLoader _spriteLoader;
     [SerializeField] private RollerItemSequence[] _rollerItemSequences;
     [SerializeField] private PayTable _payTable;
@@ -52,16 +57,14 @@ public class RollerManager : MonoBehaviour
             yield return new WaitForSeconds(_delayInSecondsBetweenRollers);
             _grid.SetColumnValues(i, _rollers[i].GetRollerItemsOnScreen());
         }
-        CheckSpinResult();
-        _grid.ResetGrid();
-        _stoppedSpinEvent.Trigger();
+        StartCoroutine(CheckSpinResult());
     }
 
-    private void CheckSpinResult()
+    private IEnumerator CheckSpinResult()
     {
         LinePatternChecker linePatternChecker = new LinePatternChecker();
         _gridToLineTransformer = new GridToLineConverter();
-        RewardsChecker rewardsChecker = new RewardsChecker(_payTable, 2);
+        RewardsChecker rewardsChecker = new RewardsChecker(_payTable, 2, 4);
 
         List<int> firstLine = new List<int>();
         _gridToLineTransformer.GetValuesInHorizontalLine(_grid, out firstLine, 0);
@@ -89,5 +92,38 @@ public class RollerManager : MonoBehaviour
         int fifthLineCredits = rewardsChecker.GetRewardInCreditsFromResult(fifthLineResult);
 
         print("1st LINE: " + firstLineCredits + " | 2nd LINE: " + secondLineCredits + " | 3rd LINE: " + thirdLineCredits + " | 4th LINE: " + fourthLineCredits + " | 5th LINE: " + fifthLineCredits);
+
+        if (firstLineCredits > 0)
+        {
+            _firstLinePopupEvent.Trigger();
+            yield return new WaitForSeconds(5f);
+        }
+
+        if (secondLineCredits > 0)
+        {
+            _secondLinePopupEvent.Trigger();
+            yield return new WaitForSeconds(5f);
+        }
+
+        if (thirdLineCredits > 0)
+        {
+            _thirdLinePopupEvent.Trigger();
+            yield return new WaitForSeconds(5f);
+        }
+
+        if (fourthLineCredits > 0)
+        {
+            _fourthLinePopupEvent.Trigger();
+            yield return new WaitForSeconds(5f);
+        }
+
+        if (fifthLineCredits > 0)
+        {
+            _fifthLinePopupEvent.Trigger();
+            yield return new WaitForSeconds(5f);
+        }
+
+        _grid.ResetGrid();
+        _stoppedSpinEvent.Trigger();
     }
 }

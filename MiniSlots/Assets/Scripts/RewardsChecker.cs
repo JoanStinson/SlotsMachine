@@ -2,11 +2,13 @@
 {
     private readonly PayTable _payTable;
     private readonly int _minimumItemCountForReward;
+    private readonly int _maximumItemCountForReward;
 
-    public RewardsChecker(PayTable payTable, int minimumItemCountForReward)
+    public RewardsChecker(PayTable payTable, int minimumItemCountForReward, int maximumItemCountForReward)
     {
         _payTable = payTable;
         _minimumItemCountForReward = minimumItemCountForReward;
+        _maximumItemCountForReward = maximumItemCountForReward;
     }
 
     public int GetRewardInCreditsFromResult(LineResult result)
@@ -18,6 +20,11 @@
         if (counter < _minimumItemCountForReward)
         {
             return credits;
+        }
+
+        if (counter > _maximumItemCountForReward)
+        {
+            counter = _maximumItemCountForReward;
         }
 
         for (int i = 0; i < _payTable.Prizes[itemType].rewards.Length; ++i)
