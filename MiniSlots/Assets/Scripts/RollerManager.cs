@@ -11,6 +11,7 @@ public class RollerManager : MonoBehaviour
     [SerializeField] private GameEvent _thirdLinePopupEvent;
     [SerializeField] private GameEvent _fourthLinePopupEvent;
     [SerializeField] private GameEvent _fifthLinePopupEvent;
+    [SerializeField] private GameEventWithStringData _creditsPopupEvent;
     [SerializeField] private SpriteLoader _spriteLoader;
     [SerializeField] private RollerItemSequence[] _rollerItemSequences;
     [SerializeField] private PayTable _payTable;
@@ -96,30 +97,40 @@ public class RollerManager : MonoBehaviour
         if (firstLineCredits > 0)
         {
             _firstLinePopupEvent.Trigger();
+            _creditsPopupEvent.stringData = $"Credits: {firstLineCredits}";
+            _creditsPopupEvent.Trigger();
             yield return new WaitForSeconds(5f);
         }
 
         if (secondLineCredits > 0)
         {
             _secondLinePopupEvent.Trigger();
+            _creditsPopupEvent.stringData = $"Credits: {secondLineCredits}";
+            _creditsPopupEvent.Trigger();
             yield return new WaitForSeconds(5f);
         }
 
         if (thirdLineCredits > 0)
         {
             _thirdLinePopupEvent.Trigger();
+            _creditsPopupEvent.stringData = $"Credits: {thirdLineCredits}";
+            _creditsPopupEvent.Trigger();
             yield return new WaitForSeconds(5f);
         }
 
         if (fourthLineCredits > 0)
         {
             _fourthLinePopupEvent.Trigger();
+            _creditsPopupEvent.stringData = $"Credits: {fourthLineCredits}";
+            _creditsPopupEvent.Trigger();
             yield return new WaitForSeconds(5f);
         }
 
         if (fifthLineCredits > 0)
         {
             _fifthLinePopupEvent.Trigger();
+            _creditsPopupEvent.stringData = $"Credits: {fifthLineCredits}";
+            _creditsPopupEvent.Trigger();
             yield return new WaitForSeconds(5f);
         }
 
