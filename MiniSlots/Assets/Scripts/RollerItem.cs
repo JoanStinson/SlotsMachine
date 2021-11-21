@@ -9,10 +9,13 @@ public class RollerItem : MonoBehaviour
     private Roller _roller;
     private float _moveSpeed;
     private float _bottomLimit;
+    private RollerItemType _rollerItemType;
+    public RollerItemType ItemType => _rollerItemType;
 
-    public void Initialize(Roller roller, Sprite sprite, float moveSpeed, float bottomLimit)
+    public void Initialize(Roller roller, RollerItemType rollerItemType, Sprite sprite, float moveSpeed, float bottomLimit)
     {
         _roller = roller;
+        _rollerItemType = rollerItemType;
         _itemImage.sprite = sprite;
         _moveSpeed = moveSpeed;
         _bottomLimit = bottomLimit;

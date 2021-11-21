@@ -13,13 +13,13 @@ public class Roller : MonoBehaviour
 
     private List<RollerItem> _items;
     public float _spacingBetweenItems = 212f;
-    public float _moveSpeed = 100f;
+    private float _moveSpeed = 1000f;
     public float _bottomLimit = -355f;
     private bool _isSpinning = false;
     private Vector3 _firstItemDefaultLocalPosition;
 
-    private const float _minSpinTimeSeconds = 2f;
-    private const float _maxSpinTimeSeconds = 4f;
+    private const float _minSpinTimeSeconds = 0f;//2
+    private const float _maxSpinTimeSeconds = 0.5f;//4
     private float _currentSpinTmeSeconds;
     private RollerItemSequence _rollerItemSequence;
     private SpriteLoader _spriteLoader;
@@ -48,7 +48,8 @@ public class Roller : MonoBehaviour
             var localPosition = _firstItemDefaultLocalPosition + (i * GetSpacingBetweenItemsVector());
             itemGO.transform.localPosition = localPosition;
             var item = itemGO.GetComponent<RollerItem>();
-            item.Initialize(this, _spriteLoader.GetSpriteForRollerItemType(_rollerItemSequence.RollerItemTypes[i]), _moveSpeed, _bottomLimit);
+            var itemType = _rollerItemSequence.RollerItemTypes[i];
+            item.Initialize(this, itemType, _spriteLoader.GetSpriteForRollerItemType(itemType), _moveSpeed, _bottomLimit);
             _items.Add(item);
         }
     }
@@ -109,5 +110,16 @@ public class Roller : MonoBehaviour
     public Vector3 GetLastItemLocalPosition()
     {
         return _items[_items.Count - 1].transform.localPosition;
+    }
+
+    public List<int> GetRollerItemsOnScreen()
+    {
+        var screenItems = new List<int>();
+        const int firstItemsIndex = 2;
+        for (int i = firstItemsIndex; i >= 0; --i)
+        {
+            screenItems.Add((int)_items[i].ItemType);
+        }
+        return screenItems;
     }
 }

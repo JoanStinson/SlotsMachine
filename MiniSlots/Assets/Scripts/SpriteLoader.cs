@@ -12,4 +12,12 @@ public class SpriteLoader : MonoBehaviour
     {
         return _itemSprites[(int)rollerItemType];
     }
+
+    //public List<RollerItemType> GetRollerTypesFromRollerItems(in List<RollerItem> rollerItems)
+    //{
+    //    for (int i = 0; i < rollerItems.Count; ++i)
+    //    {
+
+    //    }
+    //}
 }

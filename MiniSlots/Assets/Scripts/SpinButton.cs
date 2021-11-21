@@ -14,14 +14,13 @@ public class SpinButton : MonoBehaviour
         _spinButton = GetComponent<Button>();
     }
 
-    public void StartSpin()
+    public void TriggerStartSpinEvent()
     {
         _startSpinEvent.Trigger();
-        _spinButton.interactable = false;
     }
 
-    public void SpinStopped()
+    public void SetButtonInteraction(bool makeInteractable)
     {
-        _spinButton.interactable = true;
+        _spinButton.interactable = makeInteractable;
     }
 }
