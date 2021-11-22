@@ -107,5 +107,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bca34a343a360bf4881363f05feea7b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _itemImage: {fileID: 8281258035856771529}
-  _markImage: {fileID: 0}
+  _image: {fileID: 8281258035856771529}

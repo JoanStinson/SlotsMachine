@@ -8,7 +8,7 @@ namespace JGM.Game.UI
     public class SpinButton : MonoBehaviour
     {
         [SerializeField]
-        private GameEvent _startSpinEvent;
+        private EmptyGameEvent _startSpinEvent;
 
         private Button _spinButton;
 

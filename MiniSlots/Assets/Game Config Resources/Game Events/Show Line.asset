@@ -9,6 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fc376c0b6a7f69d4eaf9100fe14f5e78, type: 3}
-  m_Name: Highlight Third Line
+  m_Script: {fileID: 11500000, guid: d7dee69c294a1dc4e9fd2a1e1cce3203, type: 3}
+  m_Name: Show Line
   m_EditorClassIdentifier: 

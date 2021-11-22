@@ -1,8 +1,4 @@
-﻿using JGM.Game.Events;
-using JGM.Game.Utils;
-using System.Collections;
-using System.Collections.Generic;
-using TMPro;
+﻿using TMPro;
 using UnityEngine;
 
 namespace JGM.Game.UI
@@ -12,19 +8,9 @@ namespace JGM.Game.UI
         [SerializeField]
         private TextMeshProUGUI _text;
 
-        [SerializeField]
-        private GameEventListenerWithStringData _listener;
-
-        private void Awake()
+        public void SetText(string text)
         {
-            _listener.AddDelegateToUnityEvent(SetText);
-            gameObject.SetActive(false);
-        }
-
-        public void SetText(string input)
-        {
-            _text.text = input;
-            GetComponent<DisableGameObjectAfterDelay>().DisableGameObject();
+            _text.text = text;
         }
     }
 }

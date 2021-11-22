@@ -3,19 +3,11 @@ using UnityEngine;
 
 namespace JGM.Game.Utils
 {
-    public class DisableGameObjectAfterDelay : MonoBehaviour
+    public static class DisableGameObjectAfterDelay
     {
-        [SerializeField]
-        private float _delayInSecondsToDisable = 5f;
-
-        public void DisableGameObject()
+        public static IEnumerator DisableGOAfterDelay(GameObject gameObject, float delayToDisableInSeconds = 5f)
         {
-            StartCoroutine(DisableAfterDelay());
-        }
-
-        private IEnumerator DisableAfterDelay()
-        {
-            yield return new WaitForSeconds(_delayInSecondsToDisable);
+            yield return new WaitForSeconds(delayToDisableInSeconds);
             gameObject.SetActive(false);
         }
     }

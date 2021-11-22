@@ -2,44 +2,59 @@
 
 namespace JGM.Game.Patterns
 {
-    public enum LineType
-    {
-        HorizontalFirstRow,
-        HorizontalSecondRow,
-        HorizontalThirdRow,
-        W,
-        V
-    }
-
     public class GridToLineConverter
     {
-        public void GetValuesInHorizontalLine(in Grid grid, out List<int> values, int rowIndex)
+        public void GetValuesFromLine(LineType lineType, in Grid grid, out List<int> valuesInLine)
         {
-            values = new List<int>();
-            for (int j = 0; j < grid.NumberOfColumns; ++j)
+            valuesInLine = new List<int>();
+            switch (lineType)
             {
-                values.Add(grid.array2D[rowIndex, j]);
+                case LineType.HorizontalFirstRow:
+                    GetValuesInHorizontalLine(grid, ref valuesInLine, 0);
+                    break;
+
+                case LineType.HorizontalSecondRow:
+                    GetValuesInHorizontalLine(grid, ref valuesInLine, 1);
+                    break;
+
+                case LineType.HorizontalThirdRow:
+                    GetValuesInHorizontalLine(grid, ref valuesInLine, 2);
+                    break;
+
+                case LineType.W:
+                    GetValuesInWLine(grid, ref valuesInLine);
+                    break;
+
+                case LineType.V:
+                    GetValuesInVLine(grid, ref valuesInLine);
+                    break;
             }
         }
 
-        public void GetValuesInWLine(in Grid grid, out List<int> values)
+        private void GetValuesInHorizontalLine(in Grid grid, ref List<int> valuesInLine, int rowIndex)
         {
-            values = new List<int>();
-            values.Add(grid.array2D[0, 0]);
-            values.Add(grid.array2D[2, 1]);
-            values.Add(grid.array2D[0, 2]);
-            values.Add(grid.array2D[2, 3]);
-            values.Add(grid.array2D[0, 4]);
+            for (int j = 0; j < grid.NumberOfColumns; ++j)
+            {
+                valuesInLine.Add(grid.Array2D[rowIndex, j]);
+            }
         }
 
-        public void GetValuesInVLine(in Grid grid, out List<int> values)
+        private void GetValuesInWLine(in Grid grid, ref List<int> valuesInLine)
         {
-            values = new List<int>();
-            values.Add(grid.array2D[0, 0]);
-            values.Add(grid.array2D[1, 1]);
-            values.Add(grid.array2D[2, 2]);
-            values.Add(grid.array2D[1, 3]);
-            values.Add(grid.array2D[0, 4]);
+            valuesInLine.Add(grid.Array2D[0, 0]);
+            valuesInLine.Add(grid.Array2D[2, 1]);
+            valuesInLine.Add(grid.Array2D[0, 2]);
+            valuesInLine.Add(grid.Array2D[2, 3]);
+            valuesInLine.Add(grid.Array2D[0, 4]);
+        }
+
+        private void GetValuesInVLine(in Grid grid, ref List<int> valuesInLine)
+        {
+            valuesInLine.Add(grid.Array2D[0, 0]);
+            valuesInLine.Add(grid.Array2D[1, 1]);
+            valuesInLine.Add(grid.Array2D[2, 2]);
+            valuesInLine.Add(grid.Array2D[1, 3]);
+            valuesInLine.Add(grid.Array2D[0, 4]);
         }
     }
 }

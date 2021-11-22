@@ -2,28 +2,22 @@
 
 namespace JGM.Game.Patterns
 {
-    public class LineResult
-    {
-        public int firstItemTypeFoundInLine = -1;
-        public int itemCount = 0;
-    }
-
     public class LinePatternChecker
     {
         public LineResult GetResultFromLine(in List<int> itemsInsideLine)
         {
-            LineResult lineResult = new LineResult();
+            var lineResult = new LineResult();
 
             for (int i = 0; i < itemsInsideLine.Count; ++i)
             {
-                if (lineResult.firstItemTypeFoundInLine == -1)
+                if (lineResult.FirstItemTypeFoundInLine == -1)
                 {
-                    lineResult.firstItemTypeFoundInLine = itemsInsideLine[i];
-                    lineResult.itemCount++;
+                    lineResult.FirstItemTypeFoundInLine = itemsInsideLine[i];
+                    lineResult.ItemCount++;
                 }
-                else if (itemsInsideLine[i] == lineResult.firstItemTypeFoundInLine)
+                else if (itemsInsideLine[i] == lineResult.FirstItemTypeFoundInLine)
                 {
-                    lineResult.itemCount++;
+                    lineResult.ItemCount++;
                 }
                 else
                 {

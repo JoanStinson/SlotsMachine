@@ -1,11 +1,9 @@
 ﻿using JGM.Game.Rollers;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace JGM.Game.Utils
 {
-    public class SpriteLoader : MonoBehaviour
+    public class RollerItemSpritesContainer : MonoBehaviour
     {
         [SerializeField]
         [Tooltip("Item sprites must be in the same order as enum and same size")]
@@ -15,13 +13,5 @@ namespace JGM.Game.Utils
         {
             return _itemSprites[(int)rollerItemType];
         }
-
-        //public List<RollerItemType> GetRollerTypesFromRollerItems(in List<RollerItem> rollerItems)
-        //{
-        //    for (int i = 0; i < rollerItems.Count; ++i)
-        //    {
-
-        //    }
-        //}
     }
 }

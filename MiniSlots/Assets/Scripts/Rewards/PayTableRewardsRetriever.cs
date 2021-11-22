@@ -2,23 +2,23 @@
 
 namespace JGM.Game.Rewards
 {
-    public class RewardsChecker
+    public class PayTableRewardsRetriever
     {
         private readonly PayTable _payTable;
         private readonly int _minimumItemCountForReward;
         private readonly int _maximumItemCountForReward;
 
-        public RewardsChecker(PayTable payTable, int minimumItemCountForReward, int maximumItemCountForReward)
+        public PayTableRewardsRetriever(PayTable payTable, int minItemCountForReward, int maxItemCountForReward)
         {
             _payTable = payTable;
-            _minimumItemCountForReward = minimumItemCountForReward;
-            _maximumItemCountForReward = maximumItemCountForReward;
+            _minimumItemCountForReward = minItemCountForReward;
+            _maximumItemCountForReward = maxItemCountForReward;
         }
 
-        public int GetRewardInCreditsFromResult(LineResult result)
+        public int RetrieveReward(LineResult result)
         {
-            int counter = result.itemCount;
-            int itemType = result.firstItemTypeFoundInLine;
+            int counter = result.ItemCount;
+            int itemType = result.FirstItemTypeFoundInLine;
             int credits = 0;
 
             if (counter < _minimumItemCountForReward)

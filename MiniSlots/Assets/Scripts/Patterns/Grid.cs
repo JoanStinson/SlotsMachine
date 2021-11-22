@@ -4,35 +4,36 @@ namespace JGM.Game.Patterns
 {
     public class Grid
     {
-        public int[,] array2D;
-        private readonly int _numberOfRows;
-        private readonly int _numberOfColumns;
+        public int[,] Array2D { get; private set; }
         public int NumberOfRows => _numberOfRows;
         public int NumberOfColumns => _numberOfColumns;
+
+        private readonly int _numberOfRows;
+        private readonly int _numberOfColumns;
 
         public Grid(int numberOfRows, int numberOfColumns)
         {
             _numberOfRows = numberOfRows;
             _numberOfColumns = numberOfColumns;
-            array2D = new int[_numberOfRows, _numberOfColumns];
-            ResetGrid();
+            Array2D = new int[_numberOfRows, _numberOfColumns];
+            ResetGridValues();
         }
 
         public void SetColumnValues(int columnIndex, in List<int> values)
         {
             for (int i = 0; i < _numberOfRows; ++i)
             {
-                array2D[i, columnIndex] = values[i];
+                Array2D[i, columnIndex] = values[i];
             }
         }
 
-        public void ResetGrid()
+        public void ResetGridValues()
         {
             for (int i = 0; i < _numberOfRows; ++i)
             {
                 for (int j = 0; j < _numberOfColumns; ++j)
                 {
-                    array2D[i, j] = -1;
+                    Array2D[i, j] = -1;
                 }
             }
         }

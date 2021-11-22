@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 7846770634232240314}
   - component: {fileID: 7846770634232240313}
   - component: {fileID: 1750022817210290364}
-  - component: {fileID: 2765127382713034309}
   m_Layer: 5
   m_Name: LinePopup
   m_TagString: Untagged
@@ -95,17 +94,3 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &2765127382713034309
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7846770634232240319}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 19fa3bcd9073fa24983c40bc84cfba4c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _animation: {fileID: 0}
-  _image: {fileID: 7846770634232240313}
