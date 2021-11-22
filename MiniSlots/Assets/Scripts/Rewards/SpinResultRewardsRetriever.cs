@@ -1,8 +1,7 @@
 ﻿using JGM.Game.Events;
 using JGM.Game.Patterns;
-using System;
+using System.Collections;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 using UnityEngine;
 using Grid = JGM.Game.Patterns.Grid;
 
@@ -35,10 +34,10 @@ namespace JGM.Game.Rewards
         public void CheckSpinResult(IGameEventData gameEventData)
         {
             var grid = (gameEventData as SpinResultData).SpinResultGrid;
-            RetrieveRewards(grid);
+            StartCoroutine(RetrieveRewards(grid));
         }
 
-        private async void RetrieveRewards(Grid grid, float delayBetweenRewardsInSeconds = 5f)
+        private IEnumerator RetrieveRewards(Grid grid, float delayBetweenRewardsInSeconds = 5f)
         {
             for (int i = 0; i < _lineTypes.Length; ++i)
             {
@@ -50,7 +49,7 @@ namespace JGM.Game.Rewards
                 {
                     _showLineEvent.Trigger(new LinePopupData(i));
                     _showCreditsEvent.Trigger(new CreditsPopupData(lineCredits));
-                    await Task.Delay(TimeSpan.FromSeconds(delayBetweenRewardsInSeconds));
+                    yield return new WaitForSeconds(delayBetweenRewardsInSeconds);
                 }
             }
             _canSpinAgainEvent.Trigger();
