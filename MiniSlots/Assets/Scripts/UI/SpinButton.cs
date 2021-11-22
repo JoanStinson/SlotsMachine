@@ -1,26 +1,30 @@
-﻿using UnityEngine;
+﻿using JGM.Game.Events;
+using UnityEngine;
 using UnityEngine.UI;
 
-[RequireComponent(typeof(Button))]
-public class SpinButton : MonoBehaviour
+namespace JGM.Game.UI
 {
-    [SerializeField] 
-    private GameEvent _startSpinEvent;
-
-    private Button _spinButton;
-
-    private void Awake()
+    [RequireComponent(typeof(Button))]
+    public class SpinButton : MonoBehaviour
     {
-        _spinButton = GetComponent<Button>();
-    }
+        [SerializeField]
+        private GameEvent _startSpinEvent;
 
-    public void TriggerStartSpinEvent()
-    {
-        _startSpinEvent.Trigger();
-    }
+        private Button _spinButton;
 
-    public void SetButtonInteraction(bool makeInteractable)
-    {
-        _spinButton.interactable = makeInteractable;
+        private void Awake()
+        {
+            _spinButton = GetComponent<Button>();
+        }
+
+        public void TriggerStartSpinEvent()
+        {
+            _startSpinEvent.Trigger();
+        }
+
+        public void SetButtonInteraction(bool makeInteractable)
+        {
+            _spinButton.interactable = makeInteractable;
+        }
     }
 }

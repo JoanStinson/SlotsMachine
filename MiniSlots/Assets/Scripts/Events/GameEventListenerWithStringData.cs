@@ -2,29 +2,32 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-[Serializable]
-public class StringEvent : UnityEvent<string> { }
-
-[Serializable]
-public class GameEventListenerWithStringData : MonoBehaviour
+namespace JGM.Game.Events
 {
-    [SerializeField] private GameEventWithStringData _gameEvent;
-    [SerializeField] private StringEvent _unityEvent;
+    [Serializable]
+    public class StringEvent : UnityEvent<string> { }
 
-    public GameEventListenerWithStringData(GameEventWithStringData gameEvent, StringEvent unityEvent)
+    [Serializable]
+    public class GameEventListenerWithStringData : MonoBehaviour
     {
-        _gameEvent = gameEvent;
-        _unityEvent = unityEvent;
-    }
+        [SerializeField] private GameEventWithStringData _gameEvent;
+        [SerializeField] private StringEvent _unityEvent;
 
-    public void Awake() => _gameEvent?.Register(this);
+        public GameEventListenerWithStringData(GameEventWithStringData gameEvent, StringEvent unityEvent)
+        {
+            _gameEvent = gameEvent;
+            _unityEvent = unityEvent;
+        }
 
-    public void OnDestroy() => _gameEvent?.Deregister(this);
+        public void Awake() => _gameEvent?.Register(this);
 
-    public virtual void TriggerEvent(string gameEventData) => _unityEvent?.Invoke(gameEventData);
+        public void OnDestroy() => _gameEvent?.Deregister(this);
 
-    public void AddDelegateToUnityEvent(Action<string> newCallback)
-    {
-        _unityEvent.AddListener((stringnew) => newCallback(stringnew));
+        public virtual void TriggerEvent(string gameEventData) => _unityEvent?.Invoke(gameEventData);
+
+        public void AddDelegateToUnityEvent(Action<string> newCallback)
+        {
+            _unityEvent.AddListener((stringnew) => newCallback(stringnew));
+        }
     }
 }

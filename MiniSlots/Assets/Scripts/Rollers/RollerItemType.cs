@@ -2,13 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum RollerItemType
+namespace JGM.Game.Rollers
 {
-    Bell,
-    Watermelon,
-    Grapes,
-    Plums,
-    Orange,
-    Lemon,
-    Cherries
+    public enum RollerItemType
+    {
+        Bell,
+        Watermelon,
+        Grapes,
+        Plums,
+        Orange,
+        Lemon,
+        Cherries
+    }
 }

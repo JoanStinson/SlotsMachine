@@ -1,9 +1,12 @@
 ﻿using UnityEngine;
 
-[CreateAssetMenu(menuName = "Roller Item Sequence", fileName = "New Roller Item Sequence")]
-public class RollerItemSequence : ScriptableObject
+namespace JGM.Game.Rollers
 {
-    [SerializeField]
-    private RollerItemType[] _rollerItemTypes;
-    public RollerItemType[] RollerItemTypes => _rollerItemTypes;
+    [CreateAssetMenu(menuName = "Roller Item Sequence", fileName = "New Roller Item Sequence")]
+    public class RollerItemSequence : ScriptableObject
+    {
+        [SerializeField]
+        private RollerItemType[] _rollerItemTypes;
+        public RollerItemType[] RollerItemTypes => _rollerItemTypes;
+    }
 }

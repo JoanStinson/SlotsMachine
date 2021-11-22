@@ -1,34 +1,37 @@
 ﻿using System.Collections.Generic;
 
-public class LineResult
+namespace JGM.Game.Patterns
 {
-    public int firstItemTypeFoundInLine = -1;
-    public int itemCount = 0;
-}
-
-public class LinePatternChecker
-{
-    public LineResult GetResultFromLine(in List<int> itemsInsideLine)
+    public class LineResult
     {
-        LineResult lineResult = new LineResult();
+        public int firstItemTypeFoundInLine = -1;
+        public int itemCount = 0;
+    }
 
-        for (int i = 0; i < itemsInsideLine.Count; ++i)
+    public class LinePatternChecker
+    {
+        public LineResult GetResultFromLine(in List<int> itemsInsideLine)
         {
-            if (lineResult.firstItemTypeFoundInLine == -1)
-            {
-                lineResult.firstItemTypeFoundInLine = itemsInsideLine[i];
-                lineResult.itemCount++;
-            }
-            else if (itemsInsideLine[i] == lineResult.firstItemTypeFoundInLine)
-            {
-                lineResult.itemCount++;
-            }
-            else
-            {
-                break;
-            }
-        }
+            LineResult lineResult = new LineResult();
 
-        return lineResult;
+            for (int i = 0; i < itemsInsideLine.Count; ++i)
+            {
+                if (lineResult.firstItemTypeFoundInLine == -1)
+                {
+                    lineResult.firstItemTypeFoundInLine = itemsInsideLine[i];
+                    lineResult.itemCount++;
+                }
+                else if (itemsInsideLine[i] == lineResult.firstItemTypeFoundInLine)
+                {
+                    lineResult.itemCount++;
+                }
+                else
+                {
+                    break;
+                }
+            }
+
+            return lineResult;
+        }
     }
 }
