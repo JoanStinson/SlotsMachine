@@ -1,4 +1,5 @@
-﻿using JGM.Game.Events;
+﻿using JGM.Game.Audio;
+using JGM.Game.Events;
 using JGM.Game.Utils;
 using System.Collections;
 using System.Collections.Generic;
@@ -17,6 +18,8 @@ namespace JGM.Game.Rollers
         [SerializeField] private RollerItemSpritesContainer _spriteLoader;
         [SerializeField] private RollerItemSequence[] _rollerItemSequences;
         [SerializeField] private GameEvent _checkSpinResultEvent;
+        [SerializeField]
+        private SfxAudioPlayer _audioPlayer;
 
         private Roller[] _rollers;
         private Grid _gridOfStoppedRollerItemsOnScreen;
@@ -57,6 +60,7 @@ namespace JGM.Game.Rollers
 
         private IEnumerator SpinRollers()
         {
+            _audioPlayer.PlayLooped("Spin Roller");
             for (int i = 0; i < _rollers.Length; ++i)
             {
                 _rollers[i].StartSpin();
@@ -70,6 +74,7 @@ namespace JGM.Game.Rollers
                 _rollers[i].GetRollerItemsOnScreen(out List<int> itemsOnScreen);
                 _gridOfStoppedRollerItemsOnScreen.SetColumnValues(i, itemsOnScreen);
             }
+            _audioPlayer.Stop();
             _checkSpinResultEvent.Trigger(new SpinResultData(_gridOfStoppedRollerItemsOnScreen));
         }
     }

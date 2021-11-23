@@ -1,4 +1,5 @@
-﻿using JGM.Game.Events;
+﻿using JGM.Game.Audio;
+using JGM.Game.Events;
 using JGM.Game.Patterns;
 using System.Collections;
 using System.Collections.Generic;
@@ -13,6 +14,7 @@ namespace JGM.Game.Rewards
         [SerializeField] private GameEvent _showLineEvent;
         [SerializeField] private GameEvent _showCreditsEvent;
         [SerializeField] private EmptyGameEvent _canSpinAgainEvent;
+        [SerializeField] private SfxAudioPlayer _sfxAudioPlayer;
 
         private LineType[] _lineTypes;
         private GridToLineConverter _gridToLineConverter;
@@ -49,6 +51,7 @@ namespace JGM.Game.Rewards
                 {
                     _showLineEvent.Trigger(new LinePopupData(i));
                     _showCreditsEvent.Trigger(new CreditsPopupData(lineCredits));
+                    _sfxAudioPlayer.PlayOneShot("Win Credits");
                     yield return new WaitForSeconds(delayBetweenRewardsInSeconds);
                 }
             }

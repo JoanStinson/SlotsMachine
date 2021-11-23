@@ -1,4 +1,5 @@
-﻿using JGM.Game.Utils;
+﻿using JGM.Game.Audio;
+using JGM.Game.Utils;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,6 +11,9 @@ namespace JGM.Game.Rollers
         public bool IsSpinning { get; private set; }
 
         private List<RollerItem> _items;
+
+        [SerializeField]
+        private SfxAudioPlayer _audioPlayer;
 
         private const float _minSpinTimeInSeconds = 2f;
         private const float _maxSpinTimeInSeconds = 4f;
@@ -104,6 +108,7 @@ namespace JGM.Game.Rollers
             yield return new WaitForSeconds(delayInSeconds);
             IsSpinning = false;
             _centerItemsOnScreen = true;
+            _audioPlayer.PlayOneShot("Stop Roller");
         }
 
         private void CenterItemsOnScreenIfNecessary()
