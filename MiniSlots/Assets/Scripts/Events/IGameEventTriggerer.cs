@@ -1,17 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class IGameEventTriggerer : MonoBehaviour
+﻿namespace JGM.Game.Events
 {
-
-    private void Start()
+    public interface IGameEventTriggerer
     {
-        
-    }
 
-    private void Update()
-    {
-        
     }
 }

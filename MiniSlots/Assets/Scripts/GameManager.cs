@@ -13,6 +13,7 @@ namespace JGM.Game
         {
             _audioService.Play("Casino Crime Funk", true);
             _audioService.SetVolume("Casino Crime Funk", 0.3f);
+            UnityEngine.Assertions.Assert.raiseExceptions = true;
         }
     }
 }

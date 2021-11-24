@@ -12,7 +12,7 @@ namespace JGM.Game.Rollers
 {
     public class RollerManager : MonoBehaviour
     {
-        public const int NumberOfRowsInGrid = 3;
+        public const int NumberOfRowsInGrid = 0;
         public const int NumberOfColumnsInGrid = 5;
 
         [SerializeField] private GameEvent _checkSpinResultEvent;
@@ -68,7 +68,7 @@ namespace JGM.Game.Rollers
                 _rollers[i].StartSpin();
                 yield return new WaitForSeconds(_delayBetweenRollersInSeconds);
             }
-            for (int i = 0; i < _rollers.Length; ++i)
+            for (uint i = 0; i < _rollers.Length; ++i)
             {
                 _rollers[i].StartSpinCountdown();
                 yield return new WaitWhile(() => _rollers[i].IsSpinning);
