@@ -1,4 +1,4 @@
 ﻿namespace JGM.Game.Events
 {
-    public interface IGameEventData { }
+    public interface IGameEventData : IEventData { }
 }

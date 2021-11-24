@@ -27,7 +27,7 @@ namespace JGM.Game.UI
             _text.text = $"Credits: {creditsAmount}";
             _text.enabled = true;
             gameObject.SetActive(true);
-            StartCoroutine(DisableGameObjectAfterDelay.DisableGOAfterDelay(gameObject));
+            StartCoroutine(ObjectDisabler.DisableGOAfterDelay(gameObject));
         }
     }
 }

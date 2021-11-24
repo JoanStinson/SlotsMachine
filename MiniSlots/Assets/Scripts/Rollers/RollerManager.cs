@@ -12,12 +12,8 @@ namespace JGM.Game.Rollers
 {
     public class RollerManager : MonoBehaviour
     {
-        public const int NumberOfRowsInGrid = 3;
-        public const int NumberOfColumnsInGrid = 5;
-
-        [SerializeField] private GameEvent _checkSpinResultEvent;
-
         [Inject] private IAudioService _audioService;
+        [Inject] private IEventTriggerService _eventTriggerService;
         [Inject] private RollerFactory _rollerFactory;
         [Inject] private RollerSequencesLibrary _rollerSequencesLibrary;
         [Inject] private SpriteLibrary _spriteAssets;
@@ -28,6 +24,9 @@ namespace JGM.Game.Rollers
         private const float _startingRollerXPosition = -477f;
         private const float _spacingBetweenRollers = 238.5f;
         private const float _delayBetweenRollersInSeconds = 0.25f;
+
+        public const int NumberOfRowsInGrid = 3;
+        public const int NumberOfColumnsInGrid = 5;
 
         private void Start()
         {
@@ -77,7 +76,7 @@ namespace JGM.Game.Rollers
                 _gridOfStoppedRollerItemsOnScreen.SetColumnValues(i, itemsOnScreen);
             }
             _audioService.Stop("Spin Roller");
-            _checkSpinResultEvent.Trigger(new SpinResultData(_gridOfStoppedRollerItemsOnScreen));
+            _eventTriggerService.Trigger("Check Spin Result", new SpinResultData(_gridOfStoppedRollerItemsOnScreen));
         }
     }
 }

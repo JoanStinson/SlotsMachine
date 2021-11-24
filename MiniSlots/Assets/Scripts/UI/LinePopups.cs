@@ -23,7 +23,7 @@ namespace JGM.Game.UI
         {
             var lineIndex = linePopupData.LineIndex;
             _lines[lineIndex].gameObject.SetActive(true);
-            StartCoroutine(DisableGameObjectAfterDelay.DisableGOAfterDelay(_lines[lineIndex].gameObject));
+            StartCoroutine(ObjectDisabler.DisableGOAfterDelay(_lines[lineIndex].gameObject));
         }
     }
 }

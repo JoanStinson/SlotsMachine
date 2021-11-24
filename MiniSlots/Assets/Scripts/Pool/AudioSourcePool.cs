@@ -66,7 +66,7 @@ namespace JGM.Game.Pool
             Get(out var audioSource);
             audioSource.loop = false;
             audioSource.PlayOneShot(audioClip);
-            _monoBehaviour.StartCoroutine(DisableGameObjectAfterDelay.DisableAudioSourceAfterFinishedPlaying(audioSource));
+            _monoBehaviour.StartCoroutine(ObjectDisabler.DisableAudioSourceAfterFinishedPlaying(audioSource));
         }
 
         private void PlayLooped(in AudioClip audioClip)
@@ -75,7 +75,7 @@ namespace JGM.Game.Pool
             audioSource.clip = audioClip;
             audioSource.loop = true;
             audioSource.Play();
-            _monoBehaviour.StartCoroutine(DisableGameObjectAfterDelay.DisableAudioSourceAfterFinishedPlaying(audioSource));
+            _monoBehaviour.StartCoroutine(ObjectDisabler.DisableAudioSourceAfterFinishedPlaying(audioSource));
         }
     }
 }

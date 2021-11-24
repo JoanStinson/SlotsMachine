@@ -10,11 +10,8 @@ namespace JGM.Game.UI
     [RequireComponent(typeof(Button))]
     public class SpinButton : MonoBehaviour
     {
-        [SerializeField]
-        private GameEvent _startSpinEvent;
-
-        [Inject]
-        private IAudioService _audioService;
+        [Inject] private IAudioService _audioService;
+        [Inject] private IEventTriggerService _eventTriggerService;
 
         private Button _spinButton;
 
@@ -32,7 +29,7 @@ namespace JGM.Game.UI
         private IEnumerator SendStartSpinEventAfterAudioFinishedPlaying()
         {
             yield return new WaitWhile(() => _audioService.IsPlaying("Press Button"));
-            _startSpinEvent.Trigger();
+            _eventTriggerService.Trigger("Start Spin");
         }
 
         public void SetButtonInteraction(bool makeInteractable)

@@ -1,16 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 namespace JGM.Game.Events
 {
-    [Serializable]
-    public class CustomGameEventGroup
-    {
-        public GameEvent gameEvent;
-        public UnityCustomGameDataEvent onTriggerEvent;
-    }
-
     public class GameEventsListener : MonoBehaviour
     {
         [SerializeField]

@@ -41,7 +41,7 @@ namespace JGM.GameTests.UI
                 _gameEventDataMock.SetupGet(x => x.LineIndex).Returns(i);
                 _linePopups.ShowLinePopup(_gameEventDataMock.Object);
                 Assert.IsTrue(_lines[i].gameObject.activeSelf);
-                yield return new WaitForSeconds(DisableGameObjectAfterDelay.DefaultDelayTime);
+                yield return new WaitForSeconds(ObjectDisabler.DefaultDelayTime);
                 Assert.IsFalse(_lines[i].gameObject.activeSelf);
             }
         }

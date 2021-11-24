@@ -10,11 +10,8 @@ namespace JGM.Game.Rewards
 {
     public class SpinResultRewardsRetriever : MonoBehaviour
     {
-        [SerializeField] private GameEvent _showLineEvent;
-        [SerializeField] private GameEvent _showCreditsEvent;
-        [SerializeField] private GameEvent _canSpinAgainEvent;
-
         [Inject] private IAudioService _audioService;
+        [Inject] private IEventTriggerService _eventTriggerService;
         [Inject] private IGridToLineConverter _gridToLineConverter;
         [Inject] private ILinePatternChecker _linePatternChecker;
         [Inject] private IPayTableRewardsRetriever _payTableRewardsRetriever;
@@ -43,16 +40,15 @@ namespace JGM.Game.Rewards
                 _gridToLineConverter.GetLineValuesFromGrid(_lineTypes[i], grid, out List<int> valuesInLine);
                 var lineResult = _linePatternChecker.GetResultFromLine(valuesInLine);
                 int lineCredits = _payTableRewardsRetriever.RetrieveReward(lineResult as LineResult);
-                //Debug.Log($"LINE {i + 1} REWARDED CREDITS: {lineCredits}");
                 if (lineCredits > 0)
                 {
-                    _showLineEvent.Trigger(new LinePopupData(i));
-                    _showCreditsEvent.Trigger(new CreditsPopupData(lineCredits));
+                    _eventTriggerService.Trigger("Show Line", new LinePopupData(i));
+                    _eventTriggerService.Trigger("Show Credits", new CreditsPopupData(lineCredits));
                     _audioService.Play("Win Credits");
                     yield return new WaitForSeconds(delayBetweenRewardsInSeconds);
                 }
             }
-            _canSpinAgainEvent.Trigger();
+            _eventTriggerService.Trigger("Can Spin Again");
         }
     }
 }

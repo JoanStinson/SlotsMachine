@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace JGM.Game.Utils
 {
-    public static class DisableGameObjectAfterDelay
+    public static class ObjectDisabler
     {
         public const float DefaultDelayTime = 5f;
 

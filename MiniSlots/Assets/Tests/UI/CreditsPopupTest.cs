@@ -36,7 +36,7 @@ namespace JGM.GameTests.UI
             Assert.AreEqual(_textMeshProUGUI.text, $"Credits: {_creditsAmount}");
             Assert.IsTrue(_textMeshProUGUI.enabled);
             Assert.IsTrue(_textMeshProUGUI.gameObject.activeSelf);
-            yield return new WaitForSeconds(DisableGameObjectAfterDelay.DefaultDelayTime);
+            yield return new WaitForSeconds(ObjectDisabler.DefaultDelayTime);
             Assert.IsFalse(_creditsPopup.gameObject.activeSelf);
         }
 

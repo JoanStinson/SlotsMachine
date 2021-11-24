@@ -1,12 +1,8 @@
 ﻿using System;
 using UnityEngine;
-using UnityEngine.Events;
 
 namespace JGM.Game.Events
 {
-    [Serializable]
-    public class UnityCustomGameDataEvent : UnityEvent<IGameEventData> { }
-
     [Serializable]
     public class GameEventListener : MonoBehaviour
     {
