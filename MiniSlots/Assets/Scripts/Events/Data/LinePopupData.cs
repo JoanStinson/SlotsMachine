@@ -1,8 +1,13 @@
 ﻿namespace JGM.Game.Events
 {
-    public class LinePopupData : IGameEventData
+    public interface ILinePopupData : IGameEventData
     {
-        public readonly int LineIndex;
+        int LineIndex { get; }
+    }
+
+    public class LinePopupData : ILinePopupData
+    {
+        public int LineIndex { get; private set; }
 
         public LinePopupData(int lineIndex)
         {

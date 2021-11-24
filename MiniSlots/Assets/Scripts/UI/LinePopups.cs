@@ -9,9 +9,19 @@ namespace JGM.Game.UI
         [SerializeField]
         private Transform[] _lines;
 
+        public void Initialize(Transform[] transforms)
+        {
+            _lines = transforms;
+        }
+
         public void ShowLinePopup(IGameEventData gameEventData)
         {
-            var lineIndex = (gameEventData as LinePopupData).LineIndex;
+            ShowLinePopup(gameEventData as ILinePopupData);
+        }
+
+        public void ShowLinePopup(ILinePopupData linePopupData)
+        {
+            var lineIndex = linePopupData.LineIndex;
             _lines[lineIndex].gameObject.SetActive(true);
             StartCoroutine(DisableGameObjectAfterDelay.DisableGOAfterDelay(_lines[lineIndex].gameObject));
         }

@@ -5,7 +5,9 @@ namespace JGM.Game.Utils
 {
     public static class DisableGameObjectAfterDelay
     {
-        public static IEnumerator DisableGOAfterDelay(GameObject gameObject, float delayToDisableInSeconds = 5f)
+        public const float DefaultDelayTime = 5f;
+
+        public static IEnumerator DisableGOAfterDelay(GameObject gameObject, float delayToDisableInSeconds = DefaultDelayTime)
         {
             yield return new WaitForSeconds(delayToDisableInSeconds);
             gameObject.SetActive(false);

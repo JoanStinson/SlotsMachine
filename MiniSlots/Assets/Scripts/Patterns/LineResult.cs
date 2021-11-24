@@ -2,7 +2,7 @@
 {
     public class LineResult : ILineResult
     {
-        public int FirstItemTypeFoundInLine = -1;
-        public int ItemCount = 0;
+        public int FirstItemTypeFoundInLine { get; set; } = -1;
+        public int ItemCount { get; set; } = 0;
     }
 }

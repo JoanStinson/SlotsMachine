@@ -12,7 +12,7 @@ namespace JGM.GameTests.Patterns
         private Grid _grid;
         private List<int> _testValues;
 
-        [SetUp]
+        [OneTimeSetUp]
         public void SetUp()
         {
             _grid = new Grid(3, 4);

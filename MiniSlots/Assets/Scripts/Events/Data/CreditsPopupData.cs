@@ -1,8 +1,13 @@
 ﻿namespace JGM.Game.Events
 {
-    public class CreditsPopupData : IGameEventData
+    public interface ICreditsPopupData : IGameEventData
     {
-        public readonly int CreditsAmount;
+        int CreditsAmount { get; }
+    }
+
+    public class CreditsPopupData : ICreditsPopupData
+    {
+        public int CreditsAmount { get; private set; }
 
         public CreditsPopupData(int creditsAmount)
         {
