@@ -2,9 +2,9 @@
 
 namespace JGM.Game.Patterns
 {
-    public class LinePatternChecker
+    public class LinePatternChecker : ILinePatternChecker
     {
-        public LineResult GetResultFromLine(in List<int> itemsInsideLine)
+        public ILineResult GetResultFromLine(in List<int> itemsInsideLine)
         {
             var lineResult = new LineResult();
 

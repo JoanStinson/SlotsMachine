@@ -2,7 +2,7 @@
 
 namespace JGM.Game.Patterns
 {
-    public class Grid
+    public class Grid : IGrid
     {
         public int[,] Array2D { get; private set; }
         public int NumberOfRows => _numberOfRows;

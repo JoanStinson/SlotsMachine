@@ -1,0 +1,73 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9677cf1bed7119d40ab465f52e20935b, type: 3}
+  m_Name: Pay Table
+  m_EditorClassIdentifier: 
+  _assets:
+  - Type: 0
+    Rewards:
+    - ItemsAmount: 4
+      CreditsAmount: 100
+    - ItemsAmount: 3
+      CreditsAmount: 75
+    - ItemsAmount: 2
+      CreditsAmount: 50
+  - Type: 1
+    Rewards:
+    - ItemsAmount: 4
+      CreditsAmount: 60
+    - ItemsAmount: 3
+      CreditsAmount: 30
+    - ItemsAmount: 2
+      CreditsAmount: 20
+  - Type: 2
+    Rewards:
+    - ItemsAmount: 4
+      CreditsAmount: 50
+    - ItemsAmount: 3
+      CreditsAmount: 20
+    - ItemsAmount: 2
+      CreditsAmount: 10
+  - Type: 3
+    Rewards:
+    - ItemsAmount: 4
+      CreditsAmount: 40
+    - ItemsAmount: 3
+      CreditsAmount: 20
+    - ItemsAmount: 2
+      CreditsAmount: 10
+  - Type: 4
+    Rewards:
+    - ItemsAmount: 4
+      CreditsAmount: 30
+    - ItemsAmount: 3
+      CreditsAmount: 15
+    - ItemsAmount: 2
+      CreditsAmount: 10
+  - Type: 5
+    Rewards:
+    - ItemsAmount: 4
+      CreditsAmount: 20
+    - ItemsAmount: 3
+      CreditsAmount: 10
+    - ItemsAmount: 2
+      CreditsAmount: 5
+  - Type: 6
+    Rewards:
+    - ItemsAmount: 4
+      CreditsAmount: 10
+    - ItemsAmount: 3
+      CreditsAmount: 5
+    - ItemsAmount: 2
+      CreditsAmount: 2
+  _minItemCountForReward: 2
+  _maxItemCountForReward: 4

@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff9a182768924e2469bd1a6eba85e2e2, type: 3}
+  m_Name: Settings Installer
+  m_EditorClassIdentifier: 
+  _audioLibraryInstance: {fileID: 11400000, guid: 1f7bf1eb8035f524c9a59c874a0562f3,
+    type: 2}
+  _gameEventLibraryInstance: {fileID: 11400000, guid: 650d9bfbd35b600448342d2138ab6e68,
+    type: 2}
+  _payTableInstance: {fileID: 11400000, guid: 45c9d22747416f545a42f8391940edb4, type: 2}
+  _rollerSequencesLibraryInstance: {fileID: 11400000, guid: e492ed0bf91570947a71153c4ec5f8ff,
+    type: 2}
+  _spriteLibraryInstance: {fileID: 11400000, guid: cd592cbc4887ec54c98b5e376d9b6484,
+    type: 2}

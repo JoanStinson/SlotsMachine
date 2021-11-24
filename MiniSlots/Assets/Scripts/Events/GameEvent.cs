@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace JGM.Game.Events
 {
-    [CreateAssetMenu(menuName = "Event/Game Event", fileName = "New Game Event")]
+    [CreateAssetMenu(fileName = "New Game Event", menuName = "Game Event")]
     public class GameEvent : ScriptableObject
     {
         private HashSet<GameEventListener> _listeners = new HashSet<GameEventListener>();
@@ -12,7 +12,7 @@ namespace JGM.Game.Events
 
         public void Deregister(GameEventListener listener) => _listeners.Remove(listener);
 
-        public void Trigger(in IGameEventData eventData)
+        public void Trigger(in IGameEventData eventData = null)
         {
             Debug.Log($"'<color=green>{name}</color>' game event was triggered!");
             foreach (var listener in _listeners)

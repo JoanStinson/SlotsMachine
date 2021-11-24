@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9d4670e6ba18a44683fb2c45115a1e2, type: 3}
+  m_Name: Roller Sequences Library
+  m_EditorClassIdentifier: 
+  _assets:
+  - {fileID: 11400000, guid: 289e7836873c8974581ef81fe1014131, type: 2}
+  - {fileID: 11400000, guid: dcbd255936a3a214598f0b7e12e8b9bd, type: 2}
+  - {fileID: 11400000, guid: 372c5c27613aa9f41ad0ee2814d75e0e, type: 2}
+  - {fileID: 11400000, guid: 43fd7413656f1f743a52edeb97cbaf6c, type: 2}
+  - {fileID: 11400000, guid: 05eae6b44a26f8a46a6ac63bd7442cc2, type: 2}

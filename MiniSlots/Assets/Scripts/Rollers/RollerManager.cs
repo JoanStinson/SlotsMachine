@@ -1,9 +1,11 @@
 ﻿using JGM.Game.Audio;
 using JGM.Game.Events;
-using JGM.Game.Utils;
+using JGM.Game.Libraries;
+using JGM.Game.Patterns;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Zenject;
 using Grid = JGM.Game.Patterns.Grid;
 
 namespace JGM.Game.Rollers
@@ -13,22 +15,21 @@ namespace JGM.Game.Rollers
         public const int NumberOfRowsInGrid = 3;
         public const int NumberOfColumnsInGrid = 5;
 
-        [SerializeField] private GameObject _rollerPrefab;
-        [SerializeField] private GameObject _rollerItemPrefab;
-        [SerializeField] private RollerItemSpritesContainer _spriteLoader;
-        [SerializeField] private RollerItemSequence[] _rollerItemSequences;
         [SerializeField] private GameEvent _checkSpinResultEvent;
-        [SerializeField]
-        private SfxAudioPlayer _audioPlayer;
+
+        [Inject] private IAudioService _audioService;
+        [Inject] private RollerFactory _rollerFactory;
+        [Inject] private RollerSequencesLibrary _rollerSequencesLibrary;
+        [Inject] private SpriteLibrary _spriteAssets;
 
         private Roller[] _rollers;
-        private Grid _gridOfStoppedRollerItemsOnScreen;
+        private IGrid _gridOfStoppedRollerItemsOnScreen;
 
         private const float _startingRollerXPosition = -477f;
         private const float _spacingBetweenRollers = 238.5f;
         private const float _delayBetweenRollersInSeconds = 0.25f;
 
-        private void Awake()
+        private void Start()
         {
             _rollers = new Roller[NumberOfColumnsInGrid];
             _gridOfStoppedRollerItemsOnScreen = new Grid(NumberOfRowsInGrid, NumberOfColumnsInGrid);
@@ -49,18 +50,19 @@ namespace JGM.Game.Rollers
         {
             for (int i = 0; i < _rollers.Length; ++i)
             {
-                var rollerGO = Instantiate(_rollerPrefab, transform);
+                var roller = _rollerFactory.Create();
+                roller.transform.SetParent(transform);
                 var rollerLocalPosition = Vector3.right * (_startingRollerXPosition + (i * _spacingBetweenRollers));
-                rollerGO.transform.localPosition = rollerLocalPosition;
-                var roller = rollerGO.GetComponent<Roller>();
-                roller.Initialize(_rollerItemSequences[i], _spriteLoader, _rollerItemPrefab);
+                roller.transform.localPosition = rollerLocalPosition;
+                roller.transform.localScale = Vector3.one;
+                roller.Initialize(_rollerSequencesLibrary.Assets[i], _spriteAssets);
                 _rollers[i] = roller;
             }
         }
 
         private IEnumerator SpinRollers()
         {
-            _audioPlayer.PlayLooped("Spin Roller");
+            _audioService.Play("Spin Roller", true);
             for (int i = 0; i < _rollers.Length; ++i)
             {
                 _rollers[i].StartSpin();
@@ -74,7 +76,7 @@ namespace JGM.Game.Rollers
                 _rollers[i].GetRollerItemsOnScreen(out List<int> itemsOnScreen);
                 _gridOfStoppedRollerItemsOnScreen.SetColumnValues(i, itemsOnScreen);
             }
-            _audioPlayer.Stop();
+            _audioService.Stop("Spin Roller");
             _checkSpinResultEvent.Trigger(new SpinResultData(_gridOfStoppedRollerItemsOnScreen));
         }
     }

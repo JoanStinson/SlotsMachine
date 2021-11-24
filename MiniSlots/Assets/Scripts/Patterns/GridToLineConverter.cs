@@ -2,9 +2,9 @@
 
 namespace JGM.Game.Patterns
 {
-    public class GridToLineConverter
+    public class GridToLineConverter : IGridToLineConverter
     {
-        public void GetValuesFromLine(LineType lineType, in Grid grid, out List<int> valuesInLine)
+        public void GetLineValuesFromGrid(LineType lineType, in IGrid grid, out List<int> valuesInLine)
         {
             valuesInLine = new List<int>();
             switch (lineType)
@@ -31,7 +31,7 @@ namespace JGM.Game.Patterns
             }
         }
 
-        private void GetValuesInHorizontalLine(in Grid grid, ref List<int> valuesInLine, int rowIndex)
+        private void GetValuesInHorizontalLine(in IGrid grid, ref List<int> valuesInLine, int rowIndex)
         {
             for (int j = 0; j < grid.NumberOfColumns; ++j)
             {
@@ -39,7 +39,7 @@ namespace JGM.Game.Patterns
             }
         }
 
-        private void GetValuesInWLine(in Grid grid, ref List<int> valuesInLine)
+        private void GetValuesInWLine(in IGrid grid, ref List<int> valuesInLine)
         {
             valuesInLine.Add(grid.Array2D[0, 0]);
             valuesInLine.Add(grid.Array2D[2, 1]);
@@ -48,7 +48,7 @@ namespace JGM.Game.Patterns
             valuesInLine.Add(grid.Array2D[0, 4]);
         }
 
-        private void GetValuesInVLine(in Grid grid, ref List<int> valuesInLine)
+        private void GetValuesInVLine(in IGrid grid, ref List<int> valuesInLine)
         {
             valuesInLine.Add(grid.Array2D[0, 0]);
             valuesInLine.Add(grid.Array2D[1, 1]);

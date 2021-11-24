@@ -10,5 +10,11 @@ namespace JGM.Game.Utils
             yield return new WaitForSeconds(delayToDisableInSeconds);
             gameObject.SetActive(false);
         }
+
+        public static IEnumerator DisableAudioSourceAfterFinishedPlaying(AudioSource audioSource)
+        {
+            yield return new WaitWhile(() => audioSource.isPlaying);
+            audioSource.gameObject.SetActive(false);
+        }
     }
 }

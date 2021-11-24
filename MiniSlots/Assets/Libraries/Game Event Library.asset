@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f12bfa6d5ad40e43a79740ba7e24075, type: 3}
+  m_Name: Game Event Library
+  m_EditorClassIdentifier: 
+  _assets:
+  - {fileID: 11400000, guid: 1f95d224a5ae5ea499a0b46cb89b4034, type: 2}
+  - {fileID: 11400000, guid: f8b912f98b1a2d34089591fffb1e5578, type: 2}
+  - {fileID: 11400000, guid: c2b6232d976403b4283408814075cc67, type: 2}
+  - {fileID: 11400000, guid: 248554e3464e4d04d985b67d19abb84e, type: 2}
+  - {fileID: 11400000, guid: a5c0324dd753ddf4191f77334078508f, type: 2}

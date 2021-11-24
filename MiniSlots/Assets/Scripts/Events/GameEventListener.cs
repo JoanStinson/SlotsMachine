@@ -13,6 +13,12 @@ namespace JGM.Game.Events
         [SerializeField] private GameEvent _gameEvent;
         [SerializeField] private UnityCustomGameDataEvent _onTriggerEvent;
 
+        public GameEventListener(GameEvent unityGameEvent, UnityCustomGameDataEvent unityCustomGameDataEvent)
+        {
+            _gameEvent = unityGameEvent;
+            _onTriggerEvent = unityCustomGameDataEvent;
+        }
+
         public void Awake() => _gameEvent?.Register(this);
 
         public void OnDestroy() => _gameEvent?.Deregister(this);

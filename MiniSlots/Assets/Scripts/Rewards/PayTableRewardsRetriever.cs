@@ -1,19 +1,13 @@
-﻿using JGM.Game.Patterns;
+﻿using JGM.Game.Libraries;
+using JGM.Game.Patterns;
+using Zenject;
 
 namespace JGM.Game.Rewards
 {
-    public class PayTableRewardsRetriever
+    public class PayTableRewardsRetriever : IPayTableRewardsRetriever
     {
-        private readonly PayTable _payTable;
-        private readonly int _minimumItemCountForReward;
-        private readonly int _maximumItemCountForReward;
-
-        public PayTableRewardsRetriever(PayTable payTable, int minItemCountForReward, int maxItemCountForReward)
-        {
-            _payTable = payTable;
-            _minimumItemCountForReward = minItemCountForReward;
-            _maximumItemCountForReward = maxItemCountForReward;
-        }
+        [Inject]
+        private PayTable _payTable;
 
         public int RetrieveReward(LineResult result)
         {
@@ -21,21 +15,21 @@ namespace JGM.Game.Rewards
             int itemType = result.FirstItemTypeFoundInLine;
             int credits = 0;
 
-            if (counter < _minimumItemCountForReward)
+            if (counter < _payTable.MinItemCountForReward)
             {
                 return credits;
             }
 
-            if (counter > _maximumItemCountForReward)
+            if (counter > _payTable.MaxItemCountForReward)
             {
-                counter = _maximumItemCountForReward;
+                counter = _payTable.MaxItemCountForReward;
             }
 
-            for (int i = 0; i < _payTable.Prizes[itemType].rewards.Length; ++i)
+            for (int i = 0; i < _payTable.Assets[itemType].Rewards.Length; ++i)
             {
-                if (_payTable.Prizes[itemType].rewards[i].itemsAmount == counter)
+                if (_payTable.Assets[itemType].Rewards[i].ItemsAmount == counter)
                 {
-                    credits = _payTable.Prizes[itemType].rewards[i].creditsAmount;
+                    credits = _payTable.Assets[itemType].Rewards[i].CreditsAmount;
                     break;
                 }
             }

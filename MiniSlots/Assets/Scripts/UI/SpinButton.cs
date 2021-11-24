@@ -3,6 +3,7 @@ using JGM.Game.Events;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
+using Zenject;
 
 namespace JGM.Game.UI
 {
@@ -10,10 +11,10 @@ namespace JGM.Game.UI
     public class SpinButton : MonoBehaviour
     {
         [SerializeField]
-        private EmptyGameEvent _startSpinEvent;
+        private GameEvent _startSpinEvent;
 
-        [SerializeField]
-        private SfxAudioPlayer _audioPlayer;
+        [Inject]
+        private IAudioService _audioService;
 
         private Button _spinButton;
 
@@ -24,13 +25,13 @@ namespace JGM.Game.UI
 
         public void TriggerStartSpinEvent()
         {
-            _audioPlayer.PlayOneShot("Press Button");
+            _audioService.Play("Press Button");
             StartCoroutine(SendStartSpinEventAfterAudioFinishedPlaying());
         }
 
         private IEnumerator SendStartSpinEventAfterAudioFinishedPlaying()
         {
-            yield return new WaitWhile(() => _audioPlayer.IsPlaying());
+            yield return new WaitWhile(() => _audioService.IsPlaying("Press Button"));
             _startSpinEvent.Trigger();
         }
 

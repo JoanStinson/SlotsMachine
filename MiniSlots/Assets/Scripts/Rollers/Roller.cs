@@ -1,8 +1,9 @@
 ﻿using JGM.Game.Audio;
-using JGM.Game.Utils;
+using JGM.Game.Libraries;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Zenject;
 
 namespace JGM.Game.Rollers
 {
@@ -12,8 +13,8 @@ namespace JGM.Game.Rollers
 
         private List<RollerItem> _items;
 
-        [SerializeField]
-        private SfxAudioPlayer _audioPlayer;
+        [Inject] private IAudioService _audioService;
+        [Inject] private RollerItemFactory _rollerItemFactory;
 
         private const float _minSpinTimeInSeconds = 2f;
         private const float _maxSpinTimeInSeconds = 4f;
@@ -26,10 +27,10 @@ namespace JGM.Game.Rollers
 
         private bool _centerItemsOnScreen = false;
 
-        public void Initialize(RollerItemSequence itemSequence, RollerItemSpritesContainer spriteLoader, GameObject itemPrefab)
+        public void Initialize(RollerSequenceLibrary itemSequence, SpriteLibrary spriteAssets)
         {
             _items = new List<RollerItem>();
-            InstantiateAndAddRollerItemsToList(itemSequence, spriteLoader, itemPrefab);
+            InstantiateAndAddRollerItemsToList(itemSequence, spriteAssets);
         }
 
         private void Update()
@@ -80,16 +81,17 @@ namespace JGM.Game.Rollers
             }
         }
 
-        private void InstantiateAndAddRollerItemsToList(RollerItemSequence itemSequence, RollerItemSpritesContainer spriteLoader, GameObject itemPrefab)
+        private void InstantiateAndAddRollerItemsToList(RollerSequenceLibrary itemSequence, SpriteLibrary spriteLoader)
         {
-            for (int i = 0; i < itemSequence.RollerItemTypes.Length; ++i)
+            for (int i = 0; i < itemSequence.Assets.Length; ++i)
             {
-                var itemGO = Instantiate(itemPrefab, transform);
+                var item = _rollerItemFactory.Create();
+                item.transform.SetParent(transform);
                 var itemLocalPosition = Vector3.up * _startingItemYPosition + (i * GetSpacingBetweenItems());
-                itemGO.transform.localPosition = itemLocalPosition;
-                var item = itemGO.GetComponent<RollerItem>();
-                var itemType = itemSequence.RollerItemTypes[i];
-                var itemSprite = spriteLoader.GetSpriteForRollerItemType(itemType);
+                item.transform.localPosition = itemLocalPosition;
+                item.transform.localScale = Vector3.one;
+                var itemType = itemSequence.Assets[i];
+                var itemSprite = spriteLoader.Assets[(int)itemType];
                 item.Initialize(this, itemType, itemSprite, _itemSpinSpeed, _itemBottomLimit);
                 _items.Add(item);
             }
@@ -108,7 +110,7 @@ namespace JGM.Game.Rollers
             yield return new WaitForSeconds(delayInSeconds);
             IsSpinning = false;
             _centerItemsOnScreen = true;
-            _audioPlayer.PlayOneShot("Stop Roller");
+            _audioService.Play("Stop Roller");
         }
 
         private void CenterItemsOnScreenIfNecessary()
