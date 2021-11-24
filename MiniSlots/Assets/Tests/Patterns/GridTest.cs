@@ -1,5 +1,8 @@
 ﻿using NUnit.Framework;
+using System;
 using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.TestTools;
 using Grid = JGM.Game.Patterns.Grid;
 
 namespace JGM.GameTests.Patterns
@@ -20,33 +23,35 @@ namespace JGM.GameTests.Patterns
             }
         }
 
+        [TestCase(2u, 3u)]
+        [TestCase(5u, 4u)]
+        [TestCase(7u, 12u)]
+        public void CreateNewGrid_ColsAndRowsAreGreaterThanZero_ReturnsExpectedResult(uint numberOfRows, uint numberOfColumns)
+        {
+            _grid = new Grid(numberOfRows, numberOfColumns);
+            Assert.AreEqual(numberOfRows, _grid.NumberOfRows);
+            Assert.AreEqual(numberOfColumns, _grid.NumberOfColumns);
+            Assert.AreEqual(numberOfRows * numberOfColumns, _grid.Array2D.Length);
+        }
+
         [TestCase(0u, 0u)]
         [TestCase(0u, 1u)]
         [TestCase(1u, 0u)]
-        [TestCase(1u, 1u)]
-        [TestCase(5u, 4u)]
-        [TestCase(7u, 12u)]
-        public void CreateNewGrid_ColsAndRowsAreAccurate_ReturnsExpectedResult(uint numberOfRows, uint numberOfColumns)
+        public void CreateNewGrid_ColsAndOrRowsAreZero_LogsAssertionsFailed(uint numberOfRows, uint numberOfColumns)
         {
             _grid = new Grid(numberOfRows, numberOfColumns);
-
-            Assert.AreEqual(numberOfRows, _grid.NumberOfRows);
-            Assert.AreEqual(numberOfColumns, _grid.NumberOfColumns);
-            uint expectedNumberOfGridElements = numberOfRows * numberOfColumns;
-            Assert.AreEqual(expectedNumberOfGridElements, _grid.Array2D.Length);
+            LogAssert.Expect(LogType.Assert, "Assertion failed");
         }
 
-        [TestCase(0u, 1u, 0u)]
-        [TestCase(1u, 0u, 0u)]
-        [TestCase(1u, 1u, 0u)]
+        [TestCase(2u, 1u, 0u)]
+        [TestCase(1u, 3u, 1u)]
+        [TestCase(1u, 5u, 2u)]
         [TestCase(5u, 4u, 3u)]
         [TestCase(7u, 12u, 6u)]
-        public void SetColumnValues_SetsValuesCorrectly_ReturnsExpectedResult(uint numberOfRows, uint numberOfColumns, uint columnIndex)
+        public void SetColumnValues_ColIndexIsLessThanColsLength_ReturnsExpectedResult(uint numberOfRows, uint numberOfColumns, uint columnIndex)
         {
             _grid = new Grid(numberOfRows, numberOfColumns);
-
             _grid.SetColumnValues(columnIndex, _testValues);
-
             bool allColumnValuesAreSet = true;
             for (int i = 0; i < numberOfRows; ++i)
             {
@@ -63,8 +68,18 @@ namespace JGM.GameTests.Patterns
             Assert.IsTrue(allColumnValuesAreSet);
         }
 
-        [TestCase(0u, 1u)]
-        [TestCase(1u, 0u)]
+        [TestCase(1u, 1u, 1u)]
+        [TestCase(1u, 3u, 4u)]
+        [TestCase(7u, 6u, 16u)]
+        public void SetColumnValues_ColIndexIsGreaterThanColsLength_LogsAssertionFailed(uint numberOfRows, uint numberOfColumns, uint columnIndex)
+        {
+            _grid = new Grid(numberOfRows, numberOfColumns);
+            Assert.That(() => _grid.SetColumnValues(columnIndex, _testValues), Throws.TypeOf<IndexOutOfRangeException>());
+            LogAssert.Expect(LogType.Assert, "Assertion failed");
+        }
+
+        [TestCase(9u, 1u)]
+        [TestCase(1u, 8u)]
         [TestCase(1u, 1u)]
         [TestCase(5u, 4u)]
         [TestCase(7u, 12u)]
@@ -78,9 +93,7 @@ namespace JGM.GameTests.Patterns
                     _grid.Array2D[i, j] = 4;
                 }
             }
-
             _grid.ResetGridValues();
-
             bool allValuesReseted = true;
             for (int i = 0; i < numberOfRows; ++i)
             {

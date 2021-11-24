@@ -12,7 +12,7 @@ namespace JGM.Game.Rollers
 {
     public class RollerManager : MonoBehaviour
     {
-        public const int NumberOfRowsInGrid = 0;
+        public const int NumberOfRowsInGrid = 3;
         public const int NumberOfColumnsInGrid = 5;
 
         [SerializeField] private GameEvent _checkSpinResultEvent;

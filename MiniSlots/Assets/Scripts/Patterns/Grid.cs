@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using System.Diagnostics;
+using Debug = UnityEngine.Debug;
 
 namespace JGM.Game.Patterns
 {
@@ -14,8 +14,7 @@ namespace JGM.Game.Patterns
 
         public Grid(uint numberOfRows, uint numberOfColumns)
         {
-            Debug.Assert(numberOfRows > 0, "Number of rows needs to be greater than 0");
-            Debug.Assert(_numberOfColumns > 0);
+            Debug.Assert(numberOfRows > 0 && numberOfColumns > 0);
             _numberOfRows = numberOfRows;
             _numberOfColumns = numberOfColumns;
             Array2D = new int[_numberOfRows, _numberOfColumns];
