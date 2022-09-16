@@ -24,7 +24,7 @@ A basic slots machine game done in 5 days using Dependency Injection (Zenject), 
 
 <p align="center">
   <img width="936" height="584" src="https://github.com/JoanStinson/MiniSlots/blob/main/preview.gif">
- </p>
+</p>
 
 ## Dependency Injection (Zenject)
 ```csharp
@@ -157,4 +157,4 @@ namespace JGM.Game.Events
 ## Unit Tests
 <p align="center">
   <img width="864" height="695" src="https://github.com/JoanStinson/MiniSlots/blob/main/unit%20tests.PNG">
- </p>
+</p>
