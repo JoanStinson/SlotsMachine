@@ -1,4 +1,4 @@
-# Mini Slots
+# Slots Machine
 A basic slots machine game done in 5 days using Dependency Injection (Zenject), an Events System and wrote some Unit Tests. Pretty clean code architecture too.
 
 <p align="center">
