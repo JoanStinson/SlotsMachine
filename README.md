@@ -2,6 +2,27 @@
 A basic slots machine game done in 5 days using Dependency Injection (Zenject), an Events System and wrote some Unit Tests. Pretty clean code architecture too.
 
 <p align="center">
+  <a>
+    <img alt="Made With Unity" src="https://img.shields.io/badge/made%20with-Unity-57b9d3.svg?logo=Unity">
+  </a>
+  <a>
+    <img alt="License" src="https://img.shields.io/github/license/JoanStinson/SlotsMachine?&logo=github">
+  </a>
+  <a>
+    <img alt="Last Commit" src="https://img.shields.io/github/last-commit/JoanStinson/SlotsMachine?logo=Mapbox&color=orange">
+  </a>
+  <a>
+    <img alt="Repo Size" src="https://img.shields.io/github/repo-size/JoanStinson/SlotsMachine?logo=VirtualBox">
+  </a>
+  <a>
+    <img alt="Downloads" src="https://img.shields.io/github/downloads/JoanStinson/SlotsMachine/total?color=brightgreen">
+  </a>
+  <a>
+    <img alt="Last Release" src="https://img.shields.io/github/v/release/JoanStinson/SlotsMachine?include_prereleases&logo=Dropbox&color=yellow">
+  </a>
+</p>
+
+<p align="center">
   <img width="936" height="584" src="https://github.com/JoanStinson/MiniSlots/blob/main/preview.gif">
  </p>
 
